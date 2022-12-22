@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ManutencaoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VeiculoController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::controller(VeiculoController::class)->prefix('veiculo')->name('veiculo.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/adicionar', 'adicionar')->name('adicionar');
+        Route::post('/salvar', 'salvar')->name('salvar');
+        Route::get('/{id}/editar', 'editar')->name('editar');
+        Route::get('/{id}/visualizar', 'visualizar')->name('visualizar');
+        Route::get('/{id}/excluir', 'excluir')->name('excluir');
+    });
+
+    Route::controller(ManutencaoController::class)->prefix('manutencao')->name('manutencao.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/adicionar', 'adicionar')->name('adicionar');
         Route::post('/salvar', 'salvar')->name('salvar');

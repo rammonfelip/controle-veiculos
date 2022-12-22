@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('veiculo_id')->constrained('veiculo');
             $table->date('agendamento');
             $table->text('descricao')->nullable();
-            $table->boolean('realizado');
-            $table->date('data_realizado');
+            $table->boolean('realizado')->nullable();
+            $table->date('data_realizado')->nullable();
             $table->timestamps();
         });
     }

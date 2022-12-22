@@ -6,6 +6,7 @@ use App\Contracts\VeiculoInterface;
 use App\Http\Requests\VeiculoCreateFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class VeiculoController extends Controller
 {
@@ -35,7 +36,7 @@ class VeiculoController extends Controller
 
         $store = $this->repository->store($params);
 
-        return redirect()->route('veiculo.index');
+        return Redirect::route('veiculo.index');
     }
 
     public function editar(string $id)
@@ -49,6 +50,6 @@ class VeiculoController extends Controller
     {
         $this->repository->delete($id);
 
-        return redirect()->route('veiculo.index');
+        return Redirect::route('veiculo.index');
     }
 }
