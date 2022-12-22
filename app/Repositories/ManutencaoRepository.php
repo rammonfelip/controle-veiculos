@@ -28,9 +28,7 @@ class ManutencaoRepository implements ManutencaoInterface
 
     public function findByUser(string $userId)
     {
-        return $this->model->with(['veiculo' => function ($query) use ($userId) {
-            $query->where('user_id', $userId);
-        }])->get();
+        return $this->model->whereRelation('veiculo', 'user_id', $userId)->get();
     }
 
     public function store(array $data)
