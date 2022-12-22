@@ -16,7 +16,7 @@ class VeiculoController extends Controller
     public function index()
     {
         $veiculos = $this->repository->findBy([
-            'user_id'   =>  1
+            'user_id'   =>  Auth::id()
         ]);
 
         return view('veiculo.index', compact('veiculos'));
@@ -30,16 +30,12 @@ class VeiculoController extends Controller
     public function salvar(VeiculoCreateFormRequest $request)
     {
         $params = $request->all();
-        $params['user_id']  = 1;
+        $params['user_id']  = Auth::id();
         unset($params['_token']);
 
         $store = $this->repository->store($params);
 
-        if (! $store) {
-            return $this->response(false, 'Ocorreu um erro ao salvar.', 3);
-        }
-
-        return $this->response(true, 'Veículo salvo com sucess.', 201);
+        return redirect()->route('veiculo.index');
     }
 
     public function editar(string $id)
