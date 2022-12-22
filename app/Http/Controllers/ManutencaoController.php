@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\ManutencaoInterface;
 use App\Contracts\VeiculoInterface;
+use App\Http\Requests\ManutencaoCreateFormRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class ManutencaoController extends Controller
         return view('manutencao.formulario', compact('veiculos'));
     }
 
-    public function salvar(Request $request)
+    public function salvar(ManutencaoCreateFormRequest $request)
     {
         $params = [
             'id'            =>  $request->input('id'),

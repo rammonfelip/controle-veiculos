@@ -12,7 +12,7 @@
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Veículo</span>
                     <select name="veiculo_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                      <option>Selecione</option>
+                        <option value="">Selecione</option>
                         @foreach($veiculos as $veiculo)
                             <option value="{{ $veiculo->id }}"
                                 @if (isset($manutencao) && $manutencao->veiculo_id === $veiculo->id)
@@ -55,9 +55,6 @@
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Realizada em</span>
                     <input placeholder="__/__/____" name="data_realizado" value="{{ isset($manutencao) && $manutencao->data_realizado ? \Carbon\Carbon::parse($manutencao->data_realizado)->format('d/m/Y') : '' }}" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input date"/>
-                    @error('agendamento')
-                        <div class="text-sm text-red-600">{{ $message }}</div>
-                    @enderror
                 </label>
                 <br>
                 <br>
