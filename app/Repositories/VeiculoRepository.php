@@ -3,32 +3,39 @@
 namespace App\Repositories;
 
 use App\Contracts\VeiculoInterface;
-use App\Models\Veiculos;
+use App\Models\Veiculo;
 
 class VeiculoRepository implements VeiculoInterface
 {
+    public function __construct(
+        protected Veiculo $model
+    ) {}
+
     public function listAll()
     {
-       return Veiculos::all();
+       return $this->model->all();
     }
 
     public function find(string $id)
     {
-        return Veiculos::find($id);
+        return $this->model->find($id);
+    }
+
+    public function findBy(array $filter)
+    {
+        return $this->model->where($filter)->get();
     }
 
     public function store(array $data)
     {
-        // TODO: Implement store() method.
-    }
-
-    public function update(string $id, array $data)
-    {
-        // TODO: Implement update() method.
+        return $this->model->updateOrCreate(
+            [
+                'id' => $data['id']
+            ], $data);
     }
 
     public function delete(string $id)
     {
-        // TODO: Implement delete() method.
+        return $this->model->destroy($id);
     }
 }

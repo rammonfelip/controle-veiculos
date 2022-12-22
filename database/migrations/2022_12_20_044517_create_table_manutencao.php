@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('manutencao', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('veiculo_id')->constrained('veiculos');
+            $table->foreignId('veiculo_id')->constrained('veiculo');
             $table->date('agendamento');
             $table->text('descricao')->nullable();
             $table->boolean('realizado');

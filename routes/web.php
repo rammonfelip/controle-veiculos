@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VeiculoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,17 +16,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+//Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+    Route::controller(VeiculoController::class)->prefix('veiculo')->name('veiculo.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/adicionar', 'adicionar')->name('adicionar');
+        Route::post('/salvar', 'salvar')->name('salvar');
+        Route::get('/{id}/editar', 'editar')->name('editar');
+        Route::get('/{id}/visualizar', 'visualizar')->name('visualizar');
+        Route::get('/{id}/excluir', 'excluir')->name('excluir');
+    });
+//});
 
 require __DIR__.'/auth.php';

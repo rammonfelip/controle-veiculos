@@ -68,7 +68,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="forms.html"
+                href="{{ route('veiculo.index') }}"
               >
                 <svg
                   class="w-5 h-5"
@@ -153,7 +153,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="forms.html"
+                href="{{ route('veiculo.index') }}"
               >
                 <svg
                   class="w-5 h-5"
@@ -343,11 +343,7 @@
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
               @yield('title', 'Título da página')
             </h2>
-            <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                @yield('content')
-              </div>
-            </div>
+              @yield('content')
           </div>
         </main>
       </div>

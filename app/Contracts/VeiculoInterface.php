@@ -18,19 +18,18 @@ interface VeiculoInterface
     public function find(string $id);
 
     /**
+     * Retorna os registros baseados no filtro solicitado
+     * @param array $filter
+     * @return mixed
+     */
+    public function findBy(array $filter);
+
+    /**
      * Insere um novo registro no banco
      * @param array $data
      * @return mixed
      */
     public function store(array $data);
-
-    /**
-     * Atualiza a informação do veículo
-     * @param string $id
-     * @param array $data
-     * @return mixed
-     */
-    public function update(string $id, array $data);
 
     /**
      * Deleta um veículo
